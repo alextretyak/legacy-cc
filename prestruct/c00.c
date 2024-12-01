@@ -129,7 +129,8 @@ symbol() {
 		if (eof)
 			return(0); else
 			c = getchar();
-loop:
+/*loop:*/
+	while (1) {
 	switch(ctab[c]) {
 
 	case 125:	/* newline */
@@ -137,7 +138,7 @@ loop:
 
 	case 126:	/* white space */
 		c = getchar();
-		goto loop;
+		break; /* goto loop; */
 
 	case 0:		/* EOF */
 		eof++;
@@ -189,7 +190,7 @@ com1:
 		if (c!='/')
 			goto com1;
 		c = getchar();
-		goto loop;
+		break; /* goto loop; */
 
 	case 120:	/* . */
 	case 124:	/* number */
@@ -233,9 +234,9 @@ com1:
 	case 127:	/* unknown */
 		error("Unknown character");
 		c = getchar();
-		goto loop;
+		/* goto loop; */
 
-	}
+	}}
 	return(ctab[c]);
 }
 
@@ -339,7 +340,8 @@ tree() {
 	*pp = 06;
 	andflg = 0;
 
-advanc:
+/*advanc:*/
+	while (1) {
 	switch (o=symbol()) {
 
 	/* name */
@@ -390,7 +392,7 @@ tand:
 		if (andflg)
 			goto syntax;
 		andflg = 1;
-		goto advanc;
+		continue; /* goto advanc; */
 
 	/* ++, -- */
 	case 30:
@@ -483,7 +485,7 @@ putin:
 		}
 		*++op = o;
 		*++pp = p;
-		goto advanc;
+		continue; /* goto advanc; */
 	}
 	--pp;
 	switch (os = *op--) {
@@ -498,7 +500,7 @@ putin:
 		if (o!=7)
 			goto syntax;
 		build(os);
-		goto advanc;
+		break; /* goto advanc; */
 
 	/* mcall */
 	case 101:
@@ -510,15 +512,15 @@ putin:
 	case 6:
 		if (o!=7)
 			goto syntax;
-		goto advanc;
+		break; /* goto advanc; */
 
 	/* [ */
 	case 4:
 		if (o!=5)
 			goto syntax;
 		build(4);
-		goto advanc;
-	}
+		/* goto advanc; */
+	}}
 fbuild:
 	build(os);
 	goto opon1;

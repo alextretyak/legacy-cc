@@ -330,7 +330,8 @@ int p[][][]; {
 	char np[];
 	int i;
 
-loop:
+/*loop:*/
+	while (1) {
 	switch(*p) {
 
 	case 21:		/* const */
@@ -360,13 +361,13 @@ loop:
 	case 35:		/* & */
 		putchar('$');
 		p = p[3];
-		goto loop;
+		break; /* goto loop; */
 
 	case 36:		/* * */
 		putchar('*');
 		p = p[3];
-		goto loop;
-	}
+		/* goto loop; */
+	}}
 	error("pname called illegally");
 }
 

@@ -266,33 +266,34 @@ flag() {
 	auto c, f;
 
 	f = 0;
-l1:
+/*l1:*/
+	while (1) {
 	switch(c=getc()) {
 
 	case 'w':
 		f = 1;
-		goto l1;
+		break; /* goto l1; */
 
 	case 'i':
 		f = 2;
-		goto l1;
+		break; /* goto l1; */
 
 	case 'b':
 		f = 3;
-		goto l1;
+		break; /* goto l1; */
 
 	case 'f':
 		f = 4;
-		goto l1;
+		break; /* goto l1; */
 
 	case 'd':
 		f = 5;
-		goto l1;
+		break; /* goto l1; */
 
 	case 'p':
 		f =+ 16;
-		goto l1;
-	}
+		/* goto l1; */
+	}}
 	peekc = c;
 	return(f);
 }

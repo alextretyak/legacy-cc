@@ -354,20 +354,20 @@ blkhed()
 			}
 			cs[2] = al;
 			al =- rlength(cs[1]);
-			goto loop;
+			break; /* goto loop; */
 
 		/* parameter */
 		case 10:
 			cs[0] = 5;
-			goto loop;
+			break; /* goto loop; */
 
 		/* static */
 		case 7:
 			cs[2] = isn++;
 			defstat(cs);
-			goto loop;
+			/* goto loop; */
 
-		loop:;
+		/*loop:;*/
 		}
 		cs = cs+pssiz;
 	}
