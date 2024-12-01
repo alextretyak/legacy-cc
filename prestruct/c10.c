@@ -416,7 +416,7 @@ loop:
 		printf("L%d", p[3]);
 		return;
 
-	casename:
+	/*casename:*/
 	case 20:		/* name */
 		if (i=p[4])
 			printf("%d.+", i);
